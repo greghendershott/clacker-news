@@ -26,11 +26,10 @@
     (catch org.codehaus.jackson.JsonParseException _ nil)))
 
 (comment
-  (map (fn [id]
-         (let [item (get-item id)]
-           (println (get item "score")
-                    "votes:"
-                    (get item "title")
-                    (count (get item "kids" '()))
-                    "comments")))
-       (take 20 (top-100-story-ids))))
+  (for [id (take 20 (top-100-story-ids))]
+    (let [item (get-item id)]
+      (println (get item "score")
+               "votes:"
+               (get item "title")
+               (count (get item "kids" '()))
+               "comments"))))
